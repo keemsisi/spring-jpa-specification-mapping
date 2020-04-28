@@ -20,7 +20,7 @@ public class SpecificationEntityService {
      * @param providerId The specification provider Id
      * @return
      */
-    public Optional<SpecificationEntity> findSpecificationEntityByProviderId(@NonNull final String providerId){
+    public Optional<SpecificationEntity> findSpecificationEntityByProviderId(@NonNull final Integer providerId){
         return specificationRepository.findById(providerId);
     }
 

@@ -27,14 +27,14 @@ public class FilterController {
 
 
     @RequestMapping(value = "/filter/{providerId}", method = RequestMethod.GET)
-    public ResponseEntity<List<Map<String, Object>>> filterProviderData(@RequestParam final String  providerId , @RequestParam Map<String , String > queryParams) throws Exception {
+    public ResponseEntity<List<Map<String, Object>>> filterProviderData(@RequestParam final Integer  providerId , @RequestParam Map<String , String > queryParams) throws Exception {
         return ResponseEntity.ok(filterProviderDataHandler(providerId, queryParams ));
     }
 
 
     private List<Map<String, Object>> filterProviderDataHandler(
 
-            @NonNull String providerId,
+            @NonNull Integer providerId,
 
             @NonNull Map<String, String> queryMultiValueMap
             ) throws Exception {

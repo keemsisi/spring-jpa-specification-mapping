@@ -26,7 +26,7 @@ public class ProviderDataEntityService {
      * ○ gt: greaterThan )any field timestamp and integer)
      */
 
-    public Optional<ProviderDataEntity> findProviderDataById(@NonNull final String providerId) throws NoProviderDataEntityFoundException {
+    public Optional<ProviderDataEntity> findProviderDataById(@NonNull final Integer providerId) throws NoProviderDataEntityFoundException {
         Optional<ProviderDataEntity> entityOptional = providerDataRepository.findById(providerId);
         return entityOptional;
     }
@@ -44,7 +44,7 @@ public class ProviderDataEntityService {
     }
 
 
-    public ProviderDataEntity getProviderDataLessThan(@NonNull final String providerId) throws NoProviderDataEntityFoundException {
+    public ProviderDataEntity getProviderDataLessThan(@NonNull final Integer providerId) throws NoProviderDataEntityFoundException {
         Optional<ProviderDataEntity> entityOptional = providerDataRepository.findById(providerId);
         if (entityOptional.isPresent()) return entityOptional.get();
         else throw new NoProviderDataEntityFoundException(String.format("The providerId %s does not exits!", providerId));
@@ -53,7 +53,7 @@ public class ProviderDataEntityService {
 
 
     //greater than
-    public ProviderDataEntity getProviderDataGreaterThan(@NonNull final String providerId) throws NoSuchProviderException {
+    public ProviderDataEntity getProviderDataGreaterThan(@NonNull final Integer providerId) throws NoSuchProviderException {
         Optional<ProviderDataEntity> entityOptional = providerDataRepository.findById(providerId);
         if (entityOptional.isPresent()) return entityOptional.get();
         else throw new NullPointerException(String.format("The providerId %s does not exits!", providerId));
