@@ -23,7 +23,7 @@ public class CreateSpecificationController {
     @Autowired
     private SpecificationEntityService specificationEntityService;
 
-    @RequestMapping(name = "/CreateProviderSpecification" , method = RequestMethod.POST , produces = "application/json")
+    @RequestMapping(value = "/CreateProviderSpecification" , method = RequestMethod.POST , produces = "application/json")
     public ResponseEntity<String> create(@RequestBody final Map<String , Object> providerDataSpecification) throws IllegalArgumentException {
 
         try {

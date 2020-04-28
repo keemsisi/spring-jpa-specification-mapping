@@ -22,7 +22,7 @@ public class LoadDataController {
     }
 
 
-    @GetMapping(name = "/GetAllProviderDataWithLimit/{limit}")
+    @GetMapping(value = "/GetAllProviderDataWithLimit/{limit}")
     public  ResponseEntity<List<ProviderDataEntity>> getAllData(@PathVariable(name = "limit") Integer limit){
         return ResponseEntity.ok(providerDataEntityService.getAllData(limit));
     }

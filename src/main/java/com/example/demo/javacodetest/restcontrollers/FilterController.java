@@ -26,7 +26,7 @@ public class FilterController {
     private ProviderDataEntityService providerDataEntityService;
 
 
-    @RequestMapping(name = "/filter/{providerId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/filter/{providerId}", method = RequestMethod.GET)
     public ResponseEntity<List<Map<String, Object>>> filterProviderData(@RequestParam final String  providerId , @RequestParam Map<String , String > queryParams) throws Exception {
         return ResponseEntity.ok(filterProviderDataHandler(providerId, queryParams ));
 
