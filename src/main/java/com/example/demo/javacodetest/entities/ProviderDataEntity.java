@@ -11,16 +11,16 @@ import java.util.Map;
 public class ProviderDataEntity {
 
     @Id
-    private String id ;
+    private Integer id ;
 
     @NonNull
     private ArrayList <Map<String, Object>> data ;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-@Controller
+@RestController
 public class CreateSpecificationController {
     //timestamp , integer and string
     @Autowired
