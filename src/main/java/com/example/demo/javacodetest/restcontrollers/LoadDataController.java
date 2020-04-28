@@ -3,14 +3,14 @@ package com.example.demo.javacodetest.restcontrollers;
 
 
 import com.example.demo.javacodetest.entities.ProviderDataEntity;
+import com.example.demo.javacodetest.entities.SpecificationEntity;
 import com.example.demo.javacodetest.services.ProviderDataEntityService;
 import com.example.demo.javacodetest.services.SpecificationEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 public class LoadDataController {
@@ -20,14 +20,71 @@ public class LoadDataController {
     private SpecificationEntityService specificationEntityService;
 
     @RequestMapping(value = "/LoadProviderData" , method = RequestMethod.POST)
-    public ResponseEntity<Boolean> loadProviderData(@RequestBody ProviderDataEntity providerDataEntity) throws Exception
+    public ResponseEntity<Object> loadProviderData(@RequestBody final Map< String , Object >  data) throws Exception
     {
-        if (!specificationEntityService.findSpecificationEntityByProviderId(providerDataEntity.getId()).isPresent()) {
+
+        try {
+
+            Set<String> set = data.keySet();
+
+            if  ( set.contains("providerId") && set.contains("data")) {
+
+                ProviderDataEntity providerDataEntity = new ProviderDataEntity();
+
+                providerDataEntity.setProviderId( (Integer) data.get("providerId"));
+
+                if (data.get("data")  instanceof  ArrayList<?> ) {
+
+                    Optional < SpecificationEntity > specificationEntity = specificationEntityService.findSpecificationEntityByProviderId((Integer) data.get("providerId"));
+
+                    if ( specificationEntity.isPresent() ) {
+
+                        ArrayList<Map<String , Object>> dataVal = (ArrayList<Map<String , Object>>) data.get("data");
+
+                        for (Map<String, Object> stringObjectMap : dataVal) {
+
+                            if (specificationEntity.get().getSpecificationFields().containsAll( stringObjectMap.keySet() ) )  {
+
+                                providerDataEntity.setData(dataVal);
+
+                                providerDataEntityService.saveData(providerDataEntity);
+
+                                return ResponseEntity.of(Optional.of(true));
+
+                            }else  {
+                                   continue;
+                            }
+
+                        }
+
+                        return ResponseEntity.of(Optional.of("Data loaded"));
+
+
+
+
+                    }else {
+
+                        return ResponseEntity.of(Optional.of("Specification for the data does not exist. please create a Specification before loading data"));
+
+                    }
+
+                }else {
+
+                   return ResponseEntity.of(Optional.of("fields has to be strings data type"));
+
+
+                }
+
+            }else {
+
+                return ResponseEntity.of(Optional.of("Request body received does not have providerId or data key"));
+
+
+            }
+
+        } catch (Exception e) {
             return ResponseEntity.of(Optional.of(false));
         }
-        System.out.println(providerDataEntity.getData());
-        providerDataEntityService.saveData(providerDataEntity);
-       return ResponseEntity.ok(true);
     }
 
 

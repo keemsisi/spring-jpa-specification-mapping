@@ -14,14 +14,14 @@ public class ProviderDataEntity {
     private Integer providerId ;
 
     @NonNull
-    private ArrayList <Map<String, Object>> data ;
+    private ArrayList < Map < String , Object > > data ;
 
-    public Integer getId() {
+    public Integer getProviderId() {
         return providerId;
     }
 
-    public void setId(Integer id) {
-        this.providerId = id;
+    public void setProviderId(Integer providerId) {
+        this.providerId = providerId;
     }
 
     public ArrayList< Map<String, Object> > getData() {

@@ -44,6 +44,8 @@ public class CreateSpecificationController {
 
                    specificationEntityService.createNewSpecificationProvider(specificationEntity);
 
+               }else {
+                   ResponseEntity.of(Optional.of("fields has to be strings data type"));
                }
 
            }else {
