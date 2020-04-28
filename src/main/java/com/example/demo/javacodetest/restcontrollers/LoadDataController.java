@@ -14,8 +14,10 @@ import java.util.*;
 
 @RestController
 public class LoadDataController {
+
     @Autowired
     private ProviderDataEntityService providerDataEntityService ;
+
     @Autowired
     private SpecificationEntityService specificationEntityService;
 
@@ -45,22 +47,23 @@ public class LoadDataController {
 
                             if (specificationEntity.get().getSpecificationFields().containsAll( stringObjectMap.keySet() ) )  {
 
-                                providerDataEntity.setData(dataVal);
+                                continue;
 
-                                providerDataEntityService.saveData(providerDataEntity);
+                            }
 
-                                return ResponseEntity.of(Optional.of(true));
+                            else {
 
-                            }else  {
-                                   continue;
+                                return ResponseEntity.of(Optional.of("Specification keys not match for one or all of the values in the data"));
+
                             }
 
                         }
 
+                        providerDataEntity.setData(dataVal);
+
+                        providerDataEntityService.saveData(providerDataEntity);
+
                         return ResponseEntity.of(Optional.of("Data loaded"));
-
-
-
 
                     }else {
 
@@ -79,11 +82,12 @@ public class LoadDataController {
 
                 return ResponseEntity.of(Optional.of("Request body received does not have providerId or data key"));
 
-
             }
 
         } catch (Exception e) {
-            return ResponseEntity.of(Optional.of(false));
+
+            return ResponseEntity.of(Optional.of("Error occured " + e.getMessage() ) );
+
         }
     }
 
