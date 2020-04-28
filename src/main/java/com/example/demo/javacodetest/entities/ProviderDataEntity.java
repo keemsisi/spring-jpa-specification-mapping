@@ -2,6 +2,7 @@ package com.example.demo.javacodetest.entities;
 
 import org.springframework.lang.NonNull;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class ProviderDataEntity {
     private Integer providerId ;
 
     @NonNull
+    @Column(length = 1025)
     private ArrayList < Map < String , Object > > data ;
 
     public Integer getProviderId() {

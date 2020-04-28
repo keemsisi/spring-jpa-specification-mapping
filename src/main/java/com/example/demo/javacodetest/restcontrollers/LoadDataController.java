@@ -33,8 +33,6 @@ public class LoadDataController {
 
                 ProviderDataEntity providerDataEntity = new ProviderDataEntity();
 
-                providerDataEntity.setProviderId( (Integer) data.get("providerId"));
-
                 if (data.get("data")  instanceof  ArrayList<?> ) {
 
                     Optional < SpecificationEntity > specificationEntity = specificationEntityService.findSpecificationEntityByProviderId((Integer) data.get("providerId"));
@@ -59,6 +57,8 @@ public class LoadDataController {
 
                         }
 
+                        providerDataEntity.setProviderId( (Integer) data.get("providerId") );
+
                         providerDataEntity.setData(dataVal);
 
                         providerDataEntityService.saveData(providerDataEntity);
@@ -74,7 +74,6 @@ public class LoadDataController {
                 }else {
 
                    return ResponseEntity.of(Optional.of("fields has to be strings data type"));
-
 
                 }
 
