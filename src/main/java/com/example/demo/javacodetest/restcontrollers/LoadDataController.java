@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
 public class LoadDataController {
     @Autowired
     private ProviderDataEntityService providerDataEntityService ;
@@ -17,7 +18,8 @@ public class LoadDataController {
     @RequestMapping(value = "/LoadProviderData" , method = RequestMethod.POST)
     public ResponseEntity<Boolean> loadProviderData(@RequestBody ProviderDataEntity providerDataEntity) throws Exception
     {
-       providerDataEntityService.saveData(providerDataEntity);
+        System.out.println(providerDataEntity.getData());
+        providerDataEntityService.saveData(providerDataEntity);
        return ResponseEntity.ok(true);
     }
 

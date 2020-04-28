@@ -11,17 +11,17 @@ import java.util.Map;
 public class ProviderDataEntity {
 
     @Id
-    private Integer id ;
+    private Integer providerId ;
 
     @NonNull
     private ArrayList <Map<String, Object>> data ;
 
     public Integer getId() {
-        return id;
+        return providerId;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.providerId = id;
     }
 
     public ArrayList< Map<String, Object> > getData() {
