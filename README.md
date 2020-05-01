@@ -1,5 +1,5 @@
 # spring-jpa-specification-mapping
-supports definition of query rules to retrieve from data using these conditions
+supports definition of query rules to retrieve data using these conditions
 ○ eqc: equalsIgnoreCase (string)
 ○ eq: equalsTo (timestamp and integer)
 ○ lt: lessThan timestamp and integer)
